@@ -12,18 +12,13 @@ fn solve(input: &str) -> u32 {
         .lines()
         .map(|line| {
             line.split_once(' ')
-                .map(|tuple| {
-                    (
-                        tuple.0.trim().parse().unwrap(),
-                        tuple.1.trim().parse().unwrap(),
-                    )
-                })
+                .map(|(l, r)| (l.trim().parse().unwrap(), r.trim().parse().unwrap()))
                 .unwrap()
         })
         .collect();
-    let mut left = lists.iter().map(|tuple| tuple.0).collect::<Vec<_>>();
+    let mut left = lists.iter().map(|&(l, _)| l).collect::<Vec<_>>();
     left.sort();
-    let mut right = lists.iter().map(|tuple| tuple.1).collect::<Vec<_>>();
+    let mut right = lists.iter().map(|&(_, r)| r).collect::<Vec<_>>();
     right.sort();
     left.iter()
         .zip(right.iter())

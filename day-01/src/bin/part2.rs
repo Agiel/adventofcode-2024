@@ -12,18 +12,13 @@ fn solve(input: &str) -> u32 {
         .lines()
         .map(|line| {
             line.split_once(' ')
-                .map(|tuple| {
-                    (
-                        tuple.0.trim().parse().unwrap(),
-                        tuple.1.trim().parse().unwrap(),
-                    )
-                })
+                .map(|(l, r)| (l.trim().parse().unwrap(), r.trim().parse().unwrap()))
                 .unwrap()
         })
         .collect();
     lists
         .iter()
-        .map(|tuple| tuple.0 * lists.iter().filter(|other| other.1 == tuple.0).count() as u32)
+        .map(|(l, _)| l * lists.iter().filter(|(_, r)| r == l).count() as u32)
         .sum()
 }
 
