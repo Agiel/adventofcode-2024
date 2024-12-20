@@ -88,7 +88,7 @@ fn solve(input: &str, threshold: i32) -> i32 {
     from_start.iter().for_each(|(from, start)| {
         from_end.iter().for_each(|(to, end)| {
             let distance = (from.0 - to.0).abs() + (from.1 - to.1).abs();
-            if distance <= 2 {
+            if distance <= 20 {
                 let length = start + distance + end;
                 if legit - length >= threshold {
                     count += 1;
